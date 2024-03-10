@@ -27,9 +27,9 @@ LoadModule("json") -- ask Sxitxma#1000 to get the LoadModule function
 
 
 
-function httpSx.post(URL, Payload, Headers)
+function httpSx.post(URL, Headers, Payload)
   if not URL or URL == nil then os.exit(print("No Url entered")) end
-  if not JsonPayload or JsonPayload == nil then os.exit(print("No Payload entered")) end
+  if not Payload or Payload == nil then Payload = "post1=val2&post3=val4" end
   if not Headers or Headers == nil then Headers = {["Content-Type"] = "application/json"} end
 
       function buildQuery(url, query)
@@ -45,10 +45,10 @@ function httpSx.post(URL, Payload, Headers)
     local query = {
         wait = false
     }
+
+    if Payload ~= "post1=val2&post3=val4" then Payload = json.encode(Payload) end
     
-    local payload = json.encode(Payload)
-    
-    local response = gg.makeRequest(buildQuery(URL, query), Headers, payload)
+    local response = gg.makeRequest(buildQuery(URL, query), Headers, Payload)
     gg.sleep(1000)
     
     return response
