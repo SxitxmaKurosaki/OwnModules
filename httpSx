@@ -57,7 +57,7 @@ end
 
 
 function httpSx.get(URL, Headers)
-  if not URL or URL == nil then os.exit(print("No uUrl entered")) end
+  if not URL or URL == nil then os.exit(print("No Url entered")) end
   if not Headers or Headers == nil then Headers = {["Content-Type"] = "application/json"} end
 
   local response = gg.makeRequest(URL, Headers)
